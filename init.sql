@@ -1,0 +1,1 @@
+GRANT ALL PRIVILEGES ON DATABASE qadatabase TO test_user;
