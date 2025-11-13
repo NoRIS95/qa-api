@@ -7,6 +7,7 @@ from typing import Any
 from fastapi import FastAPI
 from loguru import logger
 
+from app.api import answer, question
 from app.db.database import Base, engine
 
 
@@ -31,6 +32,9 @@ def read_root() -> dict:
 async def health_check() -> dict:
     """Эндпоинт проверки здоровья сервиса."""
     return {"status": "healthy"}
+
+app.include_router(question.router, prefix="/questions", tags=["questions"])
+app.include_router(answer.router, tags=["answers"])
 
 if __name__ == "__main__":
     import uvicorn

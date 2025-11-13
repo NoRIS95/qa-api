@@ -1,6 +1,6 @@
 """Пакет моделей."""
-from .common import Answer, Question, User
+from .common import Answer, Question
 
 __all__ = [
-    Answer, Question, User
+    Answer, Question
 ]

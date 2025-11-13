@@ -1,9 +1,9 @@
 """
-Initial migration
+Create initial tables
 
-Revision ID: 25b51bfc8278
+Revision ID: 470bd738dac6
 Revises: 
-Create Date: 2025-11-13 17:47:11.813794
+Create Date: 2025-11-13 20:39:40.614891
 
 """
 from collections.abc import Sequence
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 from alembic import op
 
 # revision identifiers, used by Alembic.
-revision: str = '25b51bfc8278'
+revision: str = '470bd738dac6'
 down_revision: str | Sequence[str] | None = None
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
@@ -29,12 +29,6 @@ def upgrade() -> None:
     )
     op.create_index(op.f('ix_questions_id'), 'questions', ['id'], unique=False)
     op.create_index(op.f('ix_questions_text'), 'questions', ['text'], unique=False)
-    op.create_table('users',
-    sa.Column('id', sa.UUID(), nullable=False),
-    sa.Column('name', sa.String(length=50), nullable=True),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_index(op.f('ix_users_name'), 'users', ['name'], unique=True)
     op.create_table('answers',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('question_id', sa.Integer(), nullable=True),
@@ -42,7 +36,6 @@ def upgrade() -> None:
     sa.Column('text', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
     sa.ForeignKeyConstraint(['question_id'], ['questions.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_answers_id'), 'answers', ['id'], unique=False)
@@ -56,8 +49,6 @@ def downgrade() -> None:
     op.drop_index(op.f('ix_answers_text'), table_name='answers')
     op.drop_index(op.f('ix_answers_id'), table_name='answers')
     op.drop_table('answers')
-    op.drop_index(op.f('ix_users_name'), table_name='users')
-    op.drop_table('users')
     op.drop_index(op.f('ix_questions_text'), table_name='questions')
     op.drop_index(op.f('ix_questions_id'), table_name='questions')
     op.drop_table('questions')
