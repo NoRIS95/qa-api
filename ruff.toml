@@ -45,3 +45,7 @@ skip-magic-trailing-comma = false
 
 [lint.flake8-bandit]
 check-typed-exception = true
+
+[lint.per-file-ignores]
+"**/__init__.py" = ["F401"]
+"**/migrations/versions/*.py" = ["D400", "D415", "E501", "W291"]

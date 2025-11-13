@@ -4,10 +4,11 @@ import uuid
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
-Base = declarative_base()
+from app.db.database import Base
+
 
 class User(Base):
     """Модель пользователя."""
@@ -26,7 +27,7 @@ class Question(Base):
     text = Column(String, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    answer = relationship("Answer", back_populates="questions",
+    answers = relationship("Answer", back_populates="question",
                            cascade="all, delete-orphan")
 
 class Answer(Base):
@@ -40,4 +41,4 @@ class Answer(Base):
     text = Column(String, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    questions = relationship("Question", back_populates="answers")
+    question = relationship("Question", back_populates="answers")
