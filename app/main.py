@@ -5,10 +5,10 @@ from contextlib import asynccontextmanager
 from typing import Any
 
 from fastapi import FastAPI
-from loguru import logger
 
 from app.api import answer, question
 from app.db.database import Base, engine
+from app.logger import logger
 
 
 @asynccontextmanager

@@ -19,12 +19,6 @@ class AnswerCreate(AnswerBase):
     user_id: UUID
 
 
-class AnswerUpdate(AnswerBase):
-    """Схема обновления ответа."""
-
-    pass
-
-
 class Answer(AnswerBase):
     """Схема ответа."""
 

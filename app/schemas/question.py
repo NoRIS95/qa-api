@@ -19,12 +19,6 @@ class QuestionCreate(QuestionBase):
     text: str
 
 
-class QuestionUpdate(QuestionBase):
-    """Схема обновления вопроса."""
-
-    pass
-
-
 class Question(QuestionBase):
     """Схема вопроса."""
 

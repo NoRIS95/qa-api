@@ -1,15 +1,13 @@
 """Пакет Pydantic-схем."""
 
-from .answer import Answer, AnswerBase, AnswerCreate, AnswerUpdate
-from .question import Question, QuestionBase, QuestionCreate, QuestionUpdate
+from .answer import Answer, AnswerBase, AnswerCreate
+from .question import Question, QuestionBase, QuestionCreate
 
 __all__ = [
     "Answer",
     "AnswerBase",
     "AnswerCreate",
-    "AnswerUpdate",
     "Question",
     "QuestionBase",
     "QuestionCreate",
-    "QuestionUpdate",
 ]

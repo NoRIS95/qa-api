@@ -6,8 +6,8 @@ from unittest.mock import Mock, patch
 from fastapi.testclient import TestClient
 
 
-def test_create_question_valid(client: TestClient) -> None:
-    """Тест на создание вопроса с валидными данными."""
+def test_create_question_success(client: TestClient) -> None:
+    """Тест на успешное создание вопроса."""
     with patch("app.services.question.QuestionService.create_question") as mock_service:
         mock_question = Mock()
         mock_question.id = 1
@@ -69,5 +69,5 @@ def test_create_question_not_found(client: TestClient) -> None:
         mock_question.answers = []
         mock_service.return_value = mock_question
 
-        response = client.post("/questions_wrong/", json={"text": "Test questions"})
+        response = client.post("/questions_wrong/", json={"text": mock_question.text})
         assert response.status_code == 404

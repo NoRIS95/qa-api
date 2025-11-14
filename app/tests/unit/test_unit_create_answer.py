@@ -8,10 +8,10 @@ from fastapi.testclient import TestClient
 from app.models.common import Question
 
 
-def test_create_answer_valid(
+def test_create_answer_success(
     client: TestClient, sample_question: Question, answer_data: dict
 ) -> None:
-    """Тест на создание ответа с валидными данными."""
+    """Тест на успешное создание ответа."""
     with patch("app.services.answer.AnswerService.create_answer") as mock_service:
         mock_answer = Mock()
         mock_answer.id = 1
