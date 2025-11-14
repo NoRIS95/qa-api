@@ -29,7 +29,7 @@ def read_root() -> dict:
     return {"message": "Welcome to QA-API"}
 
 @app.get("/health")
-async def health_check() -> dict:
+def health_check() -> dict:
     """Эндпоинт проверки здоровья сервиса."""
     return {"status": "healthy"}
 

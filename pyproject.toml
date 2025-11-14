@@ -13,6 +13,8 @@ dependencies = [
     "sqlalchemy>=2.0.44",
     "uvicorn>=0.38.0",
     "loguru>=0.7.3",
+    "pytest>=9.0.1",
+    "httpx>=0.28.1",
 ]
 
 [dependency-groups]
@@ -25,3 +27,9 @@ dev = [
 
 [tool.ruff.lint.isort]
 known-first-party = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["app/tests"]
+pythonpath = ["app"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"

@@ -9,7 +9,7 @@ from app.services.answer import AnswerService
 
 router = APIRouter()
 
-@router.post("/questions/{id}/answers/", response_model=Answer)
+@router.post("/questions/{question_id}/answers/", response_model=Answer)
 def create_answer(answer: AnswerCreate, question_id: int,\
                    db: Session = Depends(get_db)) -> Answer:
     """Роутер создания ответа."""
