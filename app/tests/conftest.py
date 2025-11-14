@@ -1,4 +1,5 @@
 """Файл с общей фикстурой."""
+
 import uuid
 
 import pytest

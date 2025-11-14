@@ -14,6 +14,7 @@ def client() -> TestClient:
     """Фикстура клиента."""
     return TestClient(app)
 
+
 @pytest.fixture
 def sample_question() -> Question:
     """Фикстура тестового вопроса для тестов ответов."""
@@ -22,4 +23,3 @@ def sample_question() -> Question:
     question.title = "Тестовый вопрос"
     question.text = "Текст тестового вопроса"
     return question
-

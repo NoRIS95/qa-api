@@ -17,11 +17,12 @@ engine = create_engine(
     pool_size=10,
     max_overflow=20,
     pool_pre_ping=True,
-    echo=True
+    echo=True,
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
+
 
 def get_db() -> Generator[Any, Any, Any]:
     """Получение базы данных."""

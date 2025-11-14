@@ -1,6 +1,5 @@
 """Сервис для CRUD-операций, связанных с вопросами."""
 
-
 from typing import Any
 
 from fastapi import HTTPException
@@ -43,7 +42,7 @@ class QuestionService:
             db.add(db_question)
             db.commit()
             db.refresh(db_question)
-            db_question =  QuestionService.load_question_from_db(db_question)
+            db_question = QuestionService.load_question_from_db(db_question)
             return db_question
         except IntegrityError as e:
             db.rollback()
@@ -59,8 +58,9 @@ class QuestionService:
         return question
 
     @staticmethod
-    def update_question(db: Session, question_id: int, question: QuestionUpdate)\
-          -> Question:
+    def update_question(
+        db: Session, question_id: int, question: QuestionUpdate
+    ) -> Question:
         """Обновляет вопрос."""
         db_question = QuestionService.get_question(db, question_id)
         question_data = QuestionService.load_question_from_create(question)
@@ -74,9 +74,9 @@ class QuestionService:
             return db_question
         except IntegrityError as err:
             db.rollback()
-            raise HTTPException(status_code=400,
-                                detail="Неверный запрос для редактирования вопроса.")\
-                                      from err
+            raise HTTPException(
+                status_code=400, detail="Неверный запрос для редактирования вопроса."
+            ) from err
 
     @staticmethod
     def delete_question(db: Session, question_id: int) -> Question:

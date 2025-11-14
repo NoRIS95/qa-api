@@ -17,8 +17,10 @@ class Question(Base):
     text = Column(String, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    answers = relationship("Answer", back_populates="question",
-                           cascade="all, delete-orphan")
+    answers = relationship(
+        "Answer", back_populates="question", cascade="all, delete-orphan"
+    )
+
 
 class Answer(Base):
     """Модель ответа."""

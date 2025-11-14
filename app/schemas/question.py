@@ -12,15 +12,18 @@ class QuestionBase(BaseModel):
 
     text: str
 
+
 class QuestionCreate(QuestionBase):
     """Схема создания вопроса."""
 
     text: str
 
+
 class QuestionUpdate(QuestionBase):
     """Схема обновления вопроса."""
 
     pass
+
 
 class Question(QuestionBase):
     """Схема вопроса."""

@@ -30,11 +30,13 @@ class AnswerService:
         """Создает ответ."""
         try:
             if not db.query(Question).filter_by(id=question_id).first():
-                        raise HTTPException(status_code=404,
-                            detail="Не удалось ответить. Вопроса не существует!")
-            db_answer = Answer(text=answer.text,
-                                 user_id=answer.user_id,
-                                 question_id=question_id)
+                raise HTTPException(
+                    status_code=404,
+                    detail="Не удалось ответить. Вопроса не существует!",
+                )
+            db_answer = Answer(
+                text=answer.text, user_id=answer.user_id, question_id=question_id
+            )
             db.add(db_answer)
             db.commit()
             db.refresh(db_answer)

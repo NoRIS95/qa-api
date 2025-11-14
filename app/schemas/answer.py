@@ -11,16 +11,19 @@ class AnswerBase(BaseModel):
 
     text: str
 
+
 class AnswerCreate(AnswerBase):
     """Схема создания ответа."""
 
     text: str
     user_id: UUID
 
+
 class AnswerUpdate(AnswerBase):
     """Схема обновления ответа."""
 
     pass
+
 
 class Answer(AnswerBase):
     """Схема ответа."""

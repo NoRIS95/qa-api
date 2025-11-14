@@ -36,6 +36,7 @@ def db_session(test_db: Engine) -> Generator[Session, Any]:
 @pytest.fixture
 def client(db_session: Session) -> Generator[TestClient, Any]:
     """Фикстура клиента с подменой БД."""
+
     def override_get_db() -> Generator[Session, Any]:
         try:
             yield db_session
