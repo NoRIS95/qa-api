@@ -17,10 +17,12 @@ def client() -> TestClient:
     """Фикстура клиента."""
     return TestClient(app)
 
+
 @pytest.fixture
 def mock_db() -> Mock:
     """Фикстура мока базы данных."""
     return Mock(spec=Session)
+
 
 @pytest.fixture
 def sample_question() -> Question:
@@ -30,6 +32,7 @@ def sample_question() -> Question:
     question.title = "Тестовый вопрос"
     question.text = "Текст тестового вопроса"
     return question
+
 
 @pytest.fixture
 def sample_question_for_api() -> Question:
@@ -41,6 +44,7 @@ def sample_question_for_api() -> Question:
     question.created_at = datetime.now()
     question.answers = []
     return question
+
 
 @pytest.fixture
 def sample_answer_for_api() -> Answer:
@@ -54,6 +58,7 @@ def sample_answer_for_api() -> Answer:
     answer.created_at = datetime.now()
     answer.answers = []
     return answer
+
 
 @pytest.fixture
 def sample_answer() -> Answer:

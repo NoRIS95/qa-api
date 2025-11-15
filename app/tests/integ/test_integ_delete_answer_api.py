@@ -12,11 +12,13 @@ def test_delete_answer_success(client: TestClient, sample_answer: dict) -> None:
     response = client.get(f"/answers/{answer_id}")
     assert response.status_code == 404
 
+
 def test_delete_answer_invalid_id(client: TestClient) -> None:
     """Тест на удаление ответа с неправильным форматом id."""
     answer_id = "wrong_id"
     response = client.delete(f"/answers/{answer_id}")
     assert response.status_code == 422
+
 
 def test_delete_nonexistent_answer(client: TestClient, nonexistent_id: int) -> None:
     """Тест на удаление несуществующего ответа."""

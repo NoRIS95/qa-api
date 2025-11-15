@@ -29,7 +29,7 @@ dev = [
 known-first-party = ["app"]
 
 [tool.pytest.ini_options]
-testpaths = ["app/tests"]
+testpaths = ["app/app/tests"]
 pythonpath = ["app"]
 python_files = "test_*.py"
 python_classes = "Test*"

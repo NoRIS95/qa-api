@@ -13,12 +13,14 @@ def answer_data() -> dict:
         "user_id": str(uuid.uuid4()),
     }
 
+
 @pytest.fixture
 def question_data() -> dict:
     """Фикстура данных для создания вопроса."""
     return {
         "text": "Тестовый вопрос",
     }
+
 
 @pytest.fixture
 def nonexistent_id() -> int:

@@ -56,12 +56,14 @@ def sample_question(client: TestClient) -> dict[str, Any]:
     data_question = response.json()
     return data_question
 
+
 @pytest.fixture
 def sample_answer(client: TestClient, sample_question: dict) -> dict[str, Any]:
     """Фикстура создания тестового ответа."""
     question_id = sample_question["id"]
-    response = client.post(f"/questions/{question_id}/answers/",
-                           json={"text": "Тестовый ответ",
-                                  "user_id": str(uuid.uuid4())})
+    response = client.post(
+        f"/questions/{question_id}/answers/",
+        json={"text": "Тестовый ответ", "user_id": str(uuid.uuid4())},
+    )
     data_answer = response.json()
     return data_answer

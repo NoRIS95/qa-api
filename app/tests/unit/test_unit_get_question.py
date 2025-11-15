@@ -9,8 +9,9 @@ from app.models.common import Question
 from app.services.question import QuestionService
 
 
-def test_get_question_success(client: TestClient,
-                               sample_question_for_api: Question) -> None:
+def test_get_question_success(
+    client: TestClient, sample_question_for_api: Question
+) -> None:
     """Тест на успешное получение вопроса."""
     with patch("app.services.question.QuestionService.get_question") as mock_service:
         mock_service.return_value = sample_question_for_api
@@ -23,16 +24,18 @@ def test_get_question_success(client: TestClient,
         assert data["text"] == sample_question_for_api.text
         assert "created_at" in data
 
+
 def test_get_question_not_found(client: TestClient, nonexistent_id: int) -> None:
     """Тест на получение несуществующего вопроса."""
-    with patch("app.services.question.QuestionService.get_question")\
-          as mock_service:
-        mock_service.side_effect = HTTPException(status_code=404,
-                                                  detail="Вопрос не найден")
+    with patch("app.services.question.QuestionService.get_question") as mock_service:
+        mock_service.side_effect = HTTPException(
+            status_code=404, detail="Вопрос не найден"
+        )
 
         response = client.get(f"/questions/{nonexistent_id}")
         mock_service.assert_called_once()
         assert response.status_code == 404
+
 
 def test_get_all_questions_success(mock_db: Mock) -> None:
     """Тест успешного получения всех вопросов."""
@@ -43,6 +46,7 @@ def test_get_all_questions_success(mock_db: Mock) -> None:
 
     assert result == mock_questions
     mock_db.query.assert_called_once_with(Question)
+
 
 def test_get_all_questions_empty(mock_db: Mock) -> None:
     """Тест получения пустого списка вопросов."""

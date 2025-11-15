@@ -17,6 +17,7 @@ RUN pip install uv
 WORKDIR /app
 
 COPY uv.lock pyproject.toml ./
+COPY app/alembic.ini ./
 RUN uv venv && uv sync
 
 

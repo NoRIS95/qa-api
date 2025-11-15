@@ -14,16 +14,19 @@ def test_get_question_success(client: TestClient, sample_question: dict) -> None
     assert data["text"] == sample_question["text"]
     assert "created_at" in data
 
+
 def test_get_question_invalid_id(client: TestClient) -> None:
     """Тест на получение вопроса с неправильным форматом id."""
     question_id = "wrong_id"
     response = client.get(f"/questions/{question_id}")
     assert response.status_code == 422
 
+
 def test_get_question_nonexistent_id(client: TestClient, nonexistent_id: int) -> None:
     """Тест на получение несуществующего вопроса."""
     response = client.get(f"/questions/{nonexistent_id}")
     assert response.status_code == 404
+
 
 def test_get_all_questions_success(client: TestClient) -> None:
     """Тест на успешное получение всех вопросов."""

@@ -15,8 +15,10 @@ class AnswerService:
     @staticmethod
     def create_answer(db: Session, answer: AnswerCreate, question_id: int) -> Answer:
         """Создает ответ."""
-        logger.info(f"Создание ответа для вопроса {question_id},\
-                     пользователь: {answer.user_id}")
+        logger.info(
+            f"Создание ответа для вопроса {question_id},\
+                     пользователь: {answer.user_id}"
+        )
         try:
             if not db.query(Question).filter_by(id=question_id).first():
                 logger.warning(f"Вопрос {question_id} не найден при создании ответа")

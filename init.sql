@@ -1,1 +1,2 @@
 GRANT ALL PRIVILEGES ON DATABASE qadatabase TO test_user;
+CREATE DATABASE IF NOT EXISTS qadatabase;
