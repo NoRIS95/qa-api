@@ -50,11 +50,11 @@ make app
 ### Команды Make:
 * Создание файла миграции:
 ```
-migrations
+make migrations
 ```
 * Применение миграции к базе данных:
 ```
-migrations
+make migrate
 ```
 * Запуск через Docker Compose:
 ```
