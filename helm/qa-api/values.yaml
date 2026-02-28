@@ -1,0 +1,38 @@
+postgres:
+  serviceName: "postgres" # DNS-имя PostgreSQL
+  port: 5432
+  storageSize: "5Gi"
+  pvcName: "postgres-pvc"
+
+api:
+  serviceName: "qa-api-service" # DNS-имя API
+  port: 8000
+  replicas: 1
+  image:
+    repository: "qa-api"
+    tag: "v1.2.3"
+    pullPolicy: IfNotPresent
+
+# Параметры подключения (клиент ОБЯЗАН изменить!)
+database:
+  name: "qadatabase" # ← МЕНЯТЬ!
+  user: "test_user" # ← МЕНЯТЬ!
+  password: "test_pass" # ← МЕНЯТЬ!
+  host: "postgres" # ← НЕ МЕНЯТЬ!
+
+# Ресурсы (можно менять под свой кластер)
+resources:
+  api:
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  postgres:
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
