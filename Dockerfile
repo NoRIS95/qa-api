@@ -20,7 +20,9 @@ COPY uv.lock pyproject.toml ./
 COPY app/alembic.ini ./
 RUN uv venv && uv sync
 
-
+COPY app/ ./app/
+ENV PATH="/app/.venv/bin:$PATH"
 EXPOSE 8000
+RUN which uvicorn || echo "uvicorn not found in PATH"
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
